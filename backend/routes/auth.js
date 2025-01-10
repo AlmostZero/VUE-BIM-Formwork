@@ -1,12 +1,10 @@
 const express = require( 'express' );
-const { getAuthorizationUrl, authCallbackMiddleware, authRefreshMiddleware, getUserProfile } = require( '../service/aps' );
+const { getAuthorizationUrl, authCallbackMiddleware, authRefreshMiddleware, getUserProfile } = require( '../services/aps.js' );
 
 let router = express.Router();
 
 router.get( '/api/auth/login', function ( req, res ) {
-    const url = getAuthorizationUrl();
-    console.log( 'oAuth2.0 Login URL : ' + url );
-    res.redirect( url );
+    res.redirect( getAuthorizationUrl() );
 } );
 
 router.get( '/api/auth/logout', function ( req, res ) {
